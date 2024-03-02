@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .notes {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .note-card {
+    width: 300px; /* Adjust width as needed */
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .note-card:hover {
+    transform: translateY(-5px); /* Add a slight hover effect */
+  }
+  
+  .note-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #e0e0e0; /* Light gray background */
+    border-radius: 50%;
+  }
+  
+  .note-avatar mat-icon {
+    font-size: 24px;
+    color: #444; /* Dark gray icon color */
+  }
+  
+  .mat-card-header-text {
+    display: flex;
+    align-items: center;
+  }
+  
+  .mat-card-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .note-text {
+    font-size: 14px;
+    color: #666; /* Medium gray text color */
+  }
+  
