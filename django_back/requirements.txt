@@ -1,4 +1,2 @@
 Django==5.0.1
 django_cron==0.6.0
-djangorestframework==3.14.0
-newsapi-python
