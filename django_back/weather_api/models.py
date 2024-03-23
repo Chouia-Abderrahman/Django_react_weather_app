@@ -1,6 +1,7 @@
 from django.db import models
 
-class Locations(models.Model):
+
+class Location(models.Model):
 
     location_name = models.CharField(max_length=255, null=False)
     def __str__(self):
@@ -8,7 +9,7 @@ class Locations(models.Model):
 
 class HourlyWeatherData(models.Model):
 
-    location_name = models.ForeignKey(Locations, on_delete=models.CASCADE)
+    location_name = models.ForeignKey(Location, on_delete=models.CASCADE)
     date_time = models.DateTimeField(null=False)
     temperature_2m = models.FloatField()
     relative_humidity_2m = models.FloatField()
