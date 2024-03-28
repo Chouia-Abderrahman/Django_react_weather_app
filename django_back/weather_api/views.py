@@ -2,9 +2,9 @@ from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from models import HourlyWeatherData, Location
-from helper_functions import get_weather_info, get_coordinates
-from serializers import HourlyWeatherDataSerializer, LocationSerializer
+from .models import HourlyWeatherData, Location
+from .helper_functions import get_weather_info, get_coordinates
+from .serializers import HourlyWeatherDataSerializer, LocationSerializer
 # Create your views here.
 @api_view(['GET'])
 def fetch_weather_data(request):
@@ -23,3 +23,11 @@ def fetch_weather_data(request):
             hourly_weather_data.save()
 
     return Response({'message': 'Weather data updated successfully'})
+
+@api_view(['GET'])
+def current_day_weather(request):
+    return Response({'message': 'current_day_weather'})
+
+@api_view(['GET'])
+def current_day_weather_with_location(request):
+    return Response({'message': 'current_day_weather_with_location'})

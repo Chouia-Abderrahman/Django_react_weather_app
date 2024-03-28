@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from models import HourlyWeatherData, Location
+from .models import HourlyWeatherData, Location
 
 class HourlyWeatherDataSerializer(serializers.ModelSerializer):
     class Meta:
