@@ -66,4 +66,7 @@ def get_weather_info(lat, lon, number_of_days=16):
         hourly_data[variable_name] = response.Hourly().Variables(i).ValuesAsNumpy()
 
     hourly_dataframe = pd.DataFrame(data=hourly_data)
+    hourly_dataframe['is_day'] = hourly_dataframe['is_day'].astype(int)
+    print(hourly_dataframe['is_day'])
+    hourly_dataframe.to_csv("test.csv")
     return hourly_dataframe

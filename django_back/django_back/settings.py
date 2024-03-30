@@ -40,9 +40,9 @@ INSTALLED_APPS = [
     'weather_api',
 ]
 
-# CRONJOBS = [
-#     ('*/15 * * * *', 'news_api_proxy.cron.update_news'),  # Update news every 15 minutes
-# ]
+CRONJOBS = [
+    ('0 0 */15 * *', 'weather_api.fetch_weather_data'),  # Update weather data every 15 days
+]
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [

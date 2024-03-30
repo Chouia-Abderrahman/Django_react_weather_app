@@ -1,8 +1,9 @@
 from django_cron import CronJobBase, Schedule
+from .views import fetch_weather_data
 
-class UpdateNewsCronJob(CronJobBase):
-    schedule = Schedule(run_every_mins=15)
-    code = 'news_api_proxy.update_news'
+class FetchWeatherDataCron(CronJobBase):
+    schedule = Schedule(run_every_mins=1440)
+    code = 'weather_api.fetch_weather_data'
 
     def do(self):
-        fetch_news(None)
+        fetch_weather_data(None)
