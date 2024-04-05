@@ -4,7 +4,6 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import HourlyWeatherData, Location
 from .helper_functions import get_weather_info, get_coordinates, fetch_and_insert_weather_data_to_db
-from datetime import datetime, date
 from .serializers import HourlyWeatherDataSerializer, LocationSerializer
 from django.utils import timezone
 
@@ -32,8 +31,15 @@ def current_day_weather(request):
 
 @api_view(['GET'])
 def current_day_weather_with_location(request, location):
+    """
+    Get current day weather data for a specific location.
+    Args:
+        request (HttpRequest): The HTTP request object.
+        location (str): The name of the location for which weather data is requested.
 
-    # location_rec = Location.objects.get(name=location)
+    Returns:
+        Response: A JSON response containing weather data for the current day at the specified location.
+    """
     try:
         location_rec = Location.objects.get(name=location)
     except Exception:
@@ -41,7 +47,8 @@ def current_day_weather_with_location(request, location):
         location_rec.save()
         fetch_and_insert_weather_data_to_db(location_rec)
 
-    if not HourlyWeatherData.objects.filter(location_name_id=location_rec.id, date_time__date=timezone.now().date()):
+    if not HourlyWeatherData.objects.filter(location_name_id=location_rec.id,
+                                            date_time__date=timezone.now().date()):
         fetch_and_insert_weather_data_to_db(location_rec)
 
     print(timezone.now().date())
@@ -49,8 +56,5 @@ def current_day_weather_with_location(request, location):
         location_name_id=location_rec.id,
         date_time__date=timezone.now().date()
     )
-
-    # print(result_weather_data)
     serializer = HourlyWeatherDataSerializer(result_weather_data, many=True)
-    # print(serializer.data)
     return Response(serializer.data)

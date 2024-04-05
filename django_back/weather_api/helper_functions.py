@@ -78,12 +78,9 @@ def fetch_and_insert_weather_data_to_db(location_rec):
     weather_info_dataframe = get_weather_info(lat, lon)
     print(len(weather_info_dataframe), weather_info_dataframe)
     for _, row in weather_info_dataframe.iterrows():
-        # print("_",_)
-        # print("rowffffffffffffffff", row)
-        print("row['date_time']", row['date_time'])
         hourly_weather_data = HourlyWeatherData()
         hourly_weather_data.location_name = location_rec
-        hourly_weather_data.date_time = row['date_time']
+        hourly_weather_data.date_time = row['date']
         hourly_weather_data.temperature_2m = row['temperature_2m']
         hourly_weather_data.relative_humidity_2m = row['relative_humidity_2m']
         hourly_weather_data.dew_point_2m = row['dew_point_2m']
