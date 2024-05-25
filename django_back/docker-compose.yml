@@ -4,17 +4,24 @@ services:
   db:
     image: postgres:latest
     ports:
-      - "5432:5432"
+      - "9876:5432"
     environment:
       POSTGRES_DB: django_db
       POSTGRES_USER: django
       POSTGRES_PASSWORD: django
-
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U django -d django_db" ]
+      interval: 10s
+      retries: 10
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile  # Specify the path to your Dockerfile
     ports:
       - "8000:8000"
     depends_on:
       - db
     environment:
-      DATABASE_URL: "postgres://django:django@db:5432/django_db"
+      DATABASE_URL: "postgres://django:django@db:9876/django_db"
+    command: >
+      sh -c "sleep 20 && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"

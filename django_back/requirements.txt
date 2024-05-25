@@ -6,4 +6,5 @@ openmeteo_requests==1.2.0
 pandas==2.2.1
 requests_cache==1.2.0
 retry_requests==2.0.0
+djangorestframework==3.14.0
 pylint-django

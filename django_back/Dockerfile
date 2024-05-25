@@ -17,14 +17,14 @@ RUN apt-get update \
 # Install dependencies
 COPY requirements.txt /app/
 RUN pip install --upgrade pip
-RUN pip install psycopg2-binary
 RUN pip install -r requirements.txt
-
 # Copy the current directory contents into the container at /app
 COPY . /app/
 
 # Expose the port the app runs on
 EXPOSE 8000
 
+
 # Run the Django app
+CMD ["python", "manage.py", "migrate"]
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
