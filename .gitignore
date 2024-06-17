@@ -1,5 +1,4 @@
 django_back/weather_api/migrations
-
 /.idea/learning_django_angular.iml
 /django_back/django_back/.cache.sqlite
 /django_back/.cache.sqlite
