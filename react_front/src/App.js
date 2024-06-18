@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Container, Typography, Box } from '@mui/material';
 import SearchBar from './components/SearchBar';
 import ItemList from './components/ItemList';
 
@@ -11,18 +12,21 @@ const App = () => {
             console.log("fetching data")
             const response = await axios.get(`http://localhost:8000/api/current/${query}/`);
             setItems(response.data);
-            console.log(response.data)
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
 
     return (
-        <div>
-            <h1>Search List App</h1>
+        <Container maxWidth="md" sx={{ mt: 4 }}>
+            <Typography variant="h4" gutterBottom>
+                Search List App
+            </Typography>
             <SearchBar onSearch={handleSearch} />
-            <ItemList items={items} />
-        </div>
+            <Box sx={{ mt: 2 }}>
+                <ItemList items={items} />
+            </Box>
+        </Container>
     );
 };
 
