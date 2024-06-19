@@ -9,7 +9,7 @@ class Location(models.Model):
 
 class HourlyWeatherData(models.Model):
 
-    location_name = models.ForeignKey(Location, on_delete=models.CASCADE)
+    location_id = models.ForeignKey(Location, on_delete=models.CASCADE)
     date_time = models.DateTimeField(null=True)
     temperature_2m = models.FloatField(null=True)
     relative_humidity_2m = models.FloatField(null=True)
@@ -67,6 +67,6 @@ class HourlyWeatherData(models.Model):
     convective_inhibition = models.FloatField(null=True)
 
     def __str__(self):
-        return f"{self.location_name} {self.date_time}"
+        return f"{self.location_id.name} {self.date_time}"
     class Meta:
         db_table = 'hourly_weather_data'

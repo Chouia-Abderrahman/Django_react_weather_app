@@ -47,13 +47,12 @@ def current_day_weather_with_location(request, location):
         location_rec.save()
         fetch_and_insert_weather_data_to_db(location_rec)
 
-    if not HourlyWeatherData.objects.filter(location_name_id=location_rec.id,
+    if not HourlyWeatherData.objects.filter(location_id=location_rec.id,
                                             date_time__date=timezone.now().date()):
         fetch_and_insert_weather_data_to_db(location_rec)
 
-    print(timezone.now().date())
     result_weather_data = HourlyWeatherData.objects.filter(
-        location_name_id=location_rec.id,
+        location_id=location_rec.id,
         date_time__date=timezone.now().date()
     )
     serializer = HourlyWeatherDataSerializer(result_weather_data, many=True)
