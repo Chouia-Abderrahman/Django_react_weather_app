@@ -9,7 +9,6 @@ const App = () => {
 
     const handleSearch = async (query) => {
         try {
-            console.log("fetching data")
             const response = await axios.get(`http://localhost:8000/api/current/${query}/`);
             setItems(response.data);
         } catch (error) {
@@ -18,7 +17,7 @@ const App = () => {
     };
 
     return (
-        <Container maxWidth="md" sx={{ mt: 4 }}>
+        <Container sx={{ mt: 4 }}>
             <Typography variant="h4" gutterBottom>
                 Search List App
             </Typography>

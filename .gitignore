@@ -1,4 +1,6 @@
-django_back/weather_api/migrations
+/django_back/weather_api/migrations
+/django_back/django_back/__pycache__
+/django_back/weather_api/__pycache__
 /.idea/learning_django_angular.iml
 /django_back/django_back/.cache.sqlite
 /django_back/.cache.sqlite
