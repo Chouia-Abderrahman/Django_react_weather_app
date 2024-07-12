@@ -1,4 +1,4 @@
-name: Pylint
+name: Pylint and Tests
 
 on: [push]
 
@@ -17,12 +17,12 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-      - name: Run tests
-        run: |
-          cd django_back
-          python manage.py test
           cd django_back
           pip install -r requirements.txt
       - name: Analysing the code with pylint
         run: |
           pylint --rcfile=pyling_rc_config $(git ls-files '*.py')
+      - name: Run tests
+        run: |
+          cd django_back
+          python manage.py test --verbosity=2
