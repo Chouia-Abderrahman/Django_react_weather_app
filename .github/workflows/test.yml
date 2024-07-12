@@ -13,8 +13,8 @@ jobs:
           - 5432:5432
         env:
           POSTGRES_DB: django_db
-          POSTGRES_USER: django_user
-          POSTGRES_PASSWORD: django_password
+          POSTGRES_USER: django
+          POSTGRES_PASSWORD: django
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -54,8 +54,8 @@ jobs:
       - name: Run tests
         env:
           DJANGO_DB_NAME: django_db
-          DJANGO_DB_USER: django_user
-          DJANGO_DB_PASSWORD: django_password
+          DJANGO_DB_USER: django
+          DJANGO_DB_PASSWORD: django
           DJANGO_DB_HOST: localhost
           DJANGO_DB_PORT: 5432
         run: |
