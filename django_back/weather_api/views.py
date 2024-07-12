@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import status
 from .models import HourlyWeatherData, Location
 from .helper_functions import get_weather_info, get_coordinates, fetch_and_insert_weather_data_to_db
 from .serializers import HourlyWeatherDataSerializer, LocationSerializer
@@ -28,6 +29,14 @@ def fetch_weather_data(request):
 @api_view(['GET'])
 def current_day_weather(request):
     return Response({'message': 'current_day_weather'})
+
+@api_view(['POST'])
+def create_location(request):
+    serializer = LocationSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 def current_day_weather_with_location(request, location):
